@@ -9,12 +9,12 @@ import { Suspense } from "react";
 import { fetchInvoicesPages } from "@/app/lib/data";
 
 export default async function Page(props: {
-  searchParams?: { query?: string; page?: string };
+  searchParams?: Promise<{ query?: string; page?: string }>;
 }) {
-  const searchParams = props.searchParams || {};
-  const query = searchParams.query || "";
+  const searchParams = await props.searchParams;
+  const query = searchParams?.query || "";
   const totalPages = await fetchInvoicesPages(query);
-  const currentPage = Number(searchParams.page) || 1;
+  const currentPage = Number(searchParams?.page) || 1;
 
   return (
     <div className="w-full">
