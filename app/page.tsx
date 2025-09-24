@@ -1,10 +1,20 @@
 import Image from "next/image";
 import { ArrowRightIcon } from "@heroicons/react/24/outline";
 import Link from "next/link";
+import { Card } from "@/app/ui/dashboard/cards";
+import RevenueChart from "@/app/ui/dashboard/revenue-chart";
+import LatestInvoices from "@/app/ui/dashboard/latest-invoices";
+import { lusitana } from "@/app/ui/fonts";
+import { fetchRevenue } from "@/app/lib/data";
 
-export default function Page() {
+const revenue = await fetchRevenue();
+
+export default async function Page() {
   return (
     <main className="flex min-h-screen flex-col p-6">
+      <h1 className={`${lusitana.className} mb-4 text-xl md:text-2xl`}>
+        Dashboard
+      </h1>
       {/* ヘッダー部分 */}
       <div className="flex h-20 shrink-0 items-end rounded-lg bg-blue-500 p-4 md:h-52">
         {/* <AcmeLogo /> */}
