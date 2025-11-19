@@ -5,6 +5,7 @@ import { lusitana } from "@/app/ui/fonts";
 import { fetchRevenue } from "@/app/lib/data";
 import { fetchLatestInvoices } from "@/app/lib/data";
 import { fetchCardData } from "@/app/lib/data";
+import CardWrapper from "@/app/ui/dashboard/cards";
 
 export default async function Page() {
   const revenue = await fetchRevenue();
@@ -16,8 +17,15 @@ export default async function Page() {
       <h1 className={`${lusitana.className} mb-4 text-xl md:text-2xl`}>
         Dashboard
       </h1>
+
       <RevenueChart revenue={revenue} />
       <LatestInvoices latestInvoices={latestinvoices} />
+      <CardWrapper
+        numberOfCustomers={Number(card.numberOfCustomers)}
+        numberOfInvoices={Number(card.numberOfInvoices)}
+        totalPendingInvoices={Number(card.totalPendingInvoices)}
+        totalPaidInvoices={Number(card.totalPaidInvoices)}
+      />
     </main>
   );
 }
